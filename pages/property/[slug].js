@@ -1,4 +1,5 @@
 import { sanityClient } from "../../sanity";
+import { isMultiple } from "../../utils";
 
 export default function Property({
   title,
@@ -13,11 +14,34 @@ export default function Property({
   host,
   reviews
 }) {
+    const reviewAmount = reviews.length;
   return (
     <div className="container">
-          <h1>{title}</h1>
-          <h2>{propertyType} hosted by {host?.name}</h2>
-          <h4>{bedrooms} bedroom(s) * {beds} bed(s)</h4>
+      <h1>{title}</h1>
+      <h2>
+        {propertyType} hosted by {host?.name}
+      </h2>
+      <h4>
+        {bedrooms} bedroom{isMultiple(bedrooms)} * {beds} bed{isMultiple(beds)}
+      </h4>
+      <hr />
+      <h4>Enhanced Clean</h4>
+      <p>
+        This host is committed to Waterbnb's 5-step enhanced cleaning process
+      </p>
+      <h4>Amenities for everyday living</h4>
+      <p>
+        This host has equipeed this place for long stays - kitchen, shampoo etc.
+      </p>
+      <h4>House Rules</h4>
+      <p>
+        No smoking or pets allowed.
+          </p>
+          <div className="price-box">
+              <h2>${pricePerNight}</h2>
+              <h4>{reviewAmount} review{isMultiple(reviewAmount)}</h4>
+              <div className="button" onClick={() => {}}>Change Dates</div>
+          </div>
     </div>
   );
 }
